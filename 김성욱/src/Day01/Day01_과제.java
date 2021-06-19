@@ -10,12 +10,27 @@ public class Day01_과제 {
 	 *   \    /\
 	    )    (  ')
 	   (    /   )
-	    \(__)ㅣ
+	    \(__)|
 	 *   
 	 */
 
+	public static void main(String[] args) {
+		System.out.println("\\ \t / \\");
+		System.out.println(")    (   ')");
+		System.out.println("(    /   )");
+		System.out.println(" \\(__)|");
+	
+	}
 	// 과제2 : 개 출력하기
 	/*
-	 
+	 	|\_/|
+	 	|q p|   /}
+	 	( 0 )"""\
+	 	|"^"'    |
+	 	||_/=\\__|
 	 */
+	
+
+		
+	
 }
