@@ -1,5 +1,6 @@
 package Day02;
 
+import java.awt.desktop.PrintFilesEvent;
 import java.util.Scanner;
 
 public class Day02_과제 { // c s
@@ -126,14 +127,14 @@ public class Day02_과제 { // c s
 		
 		//문제11 : inch 를 입력받아 cm 로 변환하기
 		
-		/*
-		System.out.println("키를 입력하세요"); float 키 = 입력객체.nextFloat();
+		
+		/* System.out.println("키를 입력하세요"); float 키 = 입력객체.nextFloat();
 		System.out.println("몸무게를 입력하세요"); float 몸무게 = 입력객체.nextFloat();
 		System.out.println("BMI는:\n"+ 몸무게/((키/100)*(키/100)));
-		System.out.println("cm를 inch로 변환하면:\n"+(몸무게/((키/100)*(키/100)))/2.54);
-		 */
-		
+		System.out.println("cm를 inch로 변환하면:\n"+(몸무게/((키/100)*(키/100)))/2.54);*/
+		 
 	
+		
 		//문제12 : 중간고사, 기말고사, 수행평가를 입력받아 반영비율별 계산하여
 			// 소수 둘째 자리 까지 점수 출력하기
 			// 중간고사 반영비율 => 30 %
@@ -153,6 +154,13 @@ public class Day02_과제 { // c s
 			// int x = 10;
 			// int y = x-- + 5 + --x;
 			// printf(" x의 값 : %d , y의값 :  %d ", x, y)
+		
+		int x = 10;
+		int y = x-- + 5 + --x;
+		System.out.printf(" x의 값: %d , y의 값: % d", x, y);
+		
+		
+		
 		
 		
 		
