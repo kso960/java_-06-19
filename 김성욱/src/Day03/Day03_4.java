@@ -50,11 +50,11 @@ public class Day03_4 { // c s
 			 }
 			 if( 선택 == 2) {
 				 if( 커피재고== 0 ) { System.out.println("[준비중] 재고가 없습니다.");}
-				 else { System.out.println("커피를 담았습니다"); 콜라구매수++; }
+				 else { System.out.println("커피를 담았습니다"); 커피구매수++; }
 			 }
 			 if( 선택 == 3) {
 				 if( 스무디재고== 0 ) { System.out.println("[준비중] 재고가 없습니다.");}
-				 else { System.out.println("콜라를 담았습니다"); 스무디구매수++; }
+				 else { System.out.println("스무디를 담았습니다"); 스무디구매수++; }
 				 }
 			 if( 선택 == 4) {
 				 System.out.println(" 위 장바구니에 제품을 결제 하시겠습니까?[y / n] ");
