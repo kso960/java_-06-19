@@ -103,7 +103,7 @@ public class Day03_2 { // c s
 		
 		// 문제 5 : 3개 정수를 입력받아 가장 큰 수 출력
 		
-		System.out.println("정수1을 입력하세요"); int 정수1 = 입력객체.nextInt();
+		/*System.out.println("정수1을 입력하세요"); int 정수1 = 입력객체.nextInt();
 		System.out.println("정수2을 입력하세요"); int 정수2 = 입력객체.nextInt();
 		System.out.println("정수3을 입력하세요"); int 정수3 = 입력객체.nextInt();
 		
@@ -112,19 +112,60 @@ public class Day03_2 { // c s
 		if(max < 정수3) max = 정수3;
 		System.out.println("가장 큰수는" + max);
 		
-		/*
+		
 		if (정수1>정수2 && 정수1>정수3) System.out.println(정수1);
 		if (정수2>정수1 && 정수2>정수3) System.out.println(정수2);
 		if (정수3>정수1 && 정수3>정수2) System.out.println(정수3);
 		else System.out.println(" 모두 같다");*/
 
 
-		
 		// 문제 6 : 4개 정수를 입력받아 가장 큰 수 출력
 		
-		// 문제 7 : 4개 정수를 입력받아 오름차순 정렬후 출력
+		/*System.out.println("정수1을 입력하세요"); int 정수1 = 입력객체.nextInt();
+		System.out.println("정수2을 입력하세요"); int 정수2 = 입력객체.nextInt();
+		System.out.println("정수3을 입력하세요"); int 정수3 = 입력객체.nextInt();
+		System.out.println("정수4을 입력하세요"); int 정수4 = 입력객체.nextInt();
 		
-		// 문제 8 : 4개 정수를 입력받아 내림차순 정렬후 출력
+		int max = 정수1;
+		if(max < 정수2) max = 정수2;   // if(max < 정수2) max = 정수2;
+		if(max < 정수3) max = 정수3;   // else if(max < 정수3) max = 정수3;
+		if(max < 정수4) max = 정수4;   // else if(max < 정수4) max = 정수4;
+		System.out.println("가장 큰수는" + max);*/
+		
+			// if 	else if	 else if => 첫번째 if에 T이면 다음 else if 검사 실행 X
+			// if 	if	 if => 첫번째 if에 T이더라도 두번째 if 검사 실행
+		
+		// 문제 7 : 3개 정수를 입력받아 오름차순 정렬후 출력 [ 교체 방법 ] 오름차순 : if ( 정수1 > 정수2 ) 비교대상이 더 작으면 교환
+		
+		/*System.out.println("정수1을 입력하세요"); int 정수1 = 입력객체.nextInt();
+		System.out.println("정수2을 입력하세요"); int 정수2 = 입력객체.nextInt();
+		System.out.println("정수3을 입력하세요"); int 정수3 = 입력객체.nextInt();
+		
+		int temp; // 교체용 임시 변수
+		
+		System.out.printf("정렬 전: %d %d %d  \n", 정수1, 정수2, 정수3);
+		if( 정수1 > 정수2 ) {temp = 정수1; 정수1 = 정수2; 정수2 = temp;}
+		if( 정수1 > 정수3 ) {temp = 정수1; 정수1 = 정수3; 정수3 = temp;}
+		if( 정수2 > 정수3 ) {temp = 정수2; 정수2 = 정수3; 정수3 = temp;}
+		
+		System.out.printf("정렬 후: %d %d %d ", 정수1, 정수2, 정수3);*/
+		
+		
+		
+		
+		// 문제 8 : 3개 정수를 입력받아 내림차순 정렬후 출력 [ 교체 방법 ] 내림차순 : if ( 정수1 < 정수2 ) 비교대상이 더 크면 교환
+		
+		/*System.out.println("정수1을 입력하세요"); int 정수1 = 입력객체.nextInt();
+		System.out.println("정수2을 입력하세요"); int 정수2 = 입력객체.nextInt();
+		System.out.println("정수3을 입력하세요"); int 정수3 = 입력객체.nextInt();
+		
+		int temp; // 교체용 임시 변수
+		System.out.printf("정렬 전: %d %d %d  \n", 정수1, 정수2, 정수3);
+		if( 정수1 < 정수2 ) {temp = 정수1; 정수1 = 정수2; 정수2 = temp;}
+		if( 정수1 < 정수3 ) {temp = 정수1; 정수1 = 정수3; 정수3 = temp;}
+		if( 정수2 < 정수3 ) {temp = 정수2; 정수2 = 정수3; 정수3 = temp;}
+		
+		System.out.printf("정렬 후: %d %d %d ", 정수1, 정수2, 정수3); */
 		
 		
 	} // m e
