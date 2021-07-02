@@ -18,7 +18,7 @@ public class Day02_과제 { // c s
 				// qwe 		1234		유재석	itdanja@kakao.com
 		 
 		 */
-		/* 문제 1 코드
+		 /*문제 1 코드
 		System.out.print("아이디 :"); String 아이디 = 입력객체.next();
 		System.out.print("비밀번호 :"); short 비밀번호 = 입력객체.nextShort();
 		System.out.print("성명 :"); String 성명 = 입력객체.next();
