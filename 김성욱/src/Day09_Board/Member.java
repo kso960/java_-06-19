@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
+
 public class Member {
 	
 	// 필드 = 상태[ 변수 , 객체 등 = 메모리 ]
@@ -62,14 +64,21 @@ public class Member {
 		
 		// 회원가입 성공 
 		List.members.add( new Member(id, passwordconfirm, name, email, 0) );
-		// 1. 가입한 회원에게 축하메일 
-		mailsend( email  , 1 );
-		System.out.println("[[회원가입 성공]]");
-		// 2. 파일에 저장 
+
+		// 2. 파일에 저장
+		int result2 =  FileUtil.filesave( 1 );
+		if( result2 != 1) {
+			System.err.println("[[회원가입 실패]] 관리자에게 문의 ");
+		}
 		
+		System.out.println("[[회원가입 성공]]");
+		
+		// 1. 가입한 회원에게 축하메일 
+		mailsend( email  , 1 , null );
+
 	}
 	// 2. 메일보내기  [ 메일라이브러리 ]
-	public void mailsend( String recipientmail , int type ) {
+	public void mailsend( String recipientmail , int type , String contents ) {
 								// 받는사람메일		// 메일내용 유형
 		// SMTP : 메일 전송 프로토콜 
 		// 1. 설정 
@@ -96,9 +105,15 @@ public class Member {
 			message.setFrom( new InternetAddress(email) ); // 보내는사람의 인터넷 주소 얻기 
 			message.addRecipient( Message.RecipientType.TO , new InternetAddress( recipientmail ) ); // 받는사람 
 			
-			if( type == 1 ) {
+			if( type == 1 ) { //회원가입 
 				message.setSubject(" ~~ 홈페이지 가입 환영합니다 ");	// 메일 제목 
 				message.setText(" 다양한 이벤트 제공 합니다 ");	// 메일 내용 
+			}
+			if( type == 2 ) { // 비밀번호찾기 
+				
+				message.setSubject(" ~~ 홈페이지 회원님의 비밀번호 ");	// 메일 제목 
+				message.setText("회원님의 비밀번호 : " + contents );	// 메일 내용 
+				
 			}
 			// 전송
 			Transport.send(message);
@@ -109,9 +124,47 @@ public class Member {
 
 	}
 	// 3. 로그인 
+	public Member login() {
+		System.out.print("[[ id (5~10이내) : ");	String id = scanner.next();
+		System.out.print("[[ password : ");		String password = scanner.next();
+		for( Member member : List.members ) {
+			if( member.getId().equals(id) && member.getPassword().equals(password) ) {
+				System.out.println("[[[ 로그인 성공 ]]] : " + member.getId()+"님 안녕하세요");
+				return member ;
+			}
+		}
+		System.err.println("[[[동일한 회원정보가 없습니다]]]");
+		return null;
+	}
 	// 4. 아이디찾기 
+	public void findid() {
+		System.out.print("[[ name: ");	String name = scanner.next();
+		System.out.print("[[ email ");	String email = scanner.next();
+	
+		for( Member member : List.members ) {
+			if( member.getName().equals(name) && member.getEmail().equals(email) ) {
+				System.out.println("[[[ 회원님의 아이디 : "+ member.getId() + "]]]");
+				return;
+			}
+		}
+		System.err.println("[[[동일한 회원정보가 없습니다]]]");
+	}
 	// 5. 패스워드찾기
-	// 6. 회원탈퇴
+	public void findpassword() {
+		System.out.print("[[ id (5~10이내) : ");	String id = scanner.next();
+		System.out.print("[[ email ");	String email = scanner.next();
+		for( Member member : List.members ) {
+			if( member.getId().equals(id) && member.getEmail().equals(email) ) {
+				System.out.println("[[[ 회원님의 비밀번호를 해당 메일로 전송했습니다 ]]]");
+					// 메일전송
+					mailsend( email , 2 , member.getPassword() );
+				return;
+			}
+		}
+		System.err.println("[[[동일한 회원정보가 없습니다]]]");
+
+	}
+
 	// 7. 아이디체크
 	public int idcheck( String checkid ) {
 		// int : retrun 했을때 반환 되는 타입
@@ -123,6 +176,49 @@ public class Member {
 			}
 		}
 		return -1; // id체크 없다 
+	}
+	// 8. 회원정보 메뉴
+	public int infomember() {
+		
+		System.out.println(" [[[아이디 : " + this.id );
+		System.out.println(" [[[이름 : " + this.name );
+		System.out.println(" [[[이메일 : " + this.email );
+		System.out.println(" [[[포인트 : " + this.point );
+		
+		System.out.println("1.회원수정[이름,이메일수정] 2.회원탈퇴");
+		int 선택1 = scanner.nextInt();
+		if( 선택1 == 1 ) { updatemember(); return 1;  }
+		if( 선택1 == 2 ) { deletemember(); return 2;  }
+		return 3;
+	}
+	// 9. 회원탈퇴
+	public void deletemember() {
+	
+		System.out.println("[[[확인]]] 정말 탈퇴하시겠습니까? 예[1] 아니요[0] ");
+		int 선택2 = scanner.nextInt();
+		if( 선택2 == 1 ) { 
+			for( int i = 0 ;i<List.members.size() ;i++ ) {
+				if( List.members.get(i).getId().equals(id) ) {
+					List.members.remove(i);
+					System.out.println("[[[완료]]] : 탈퇴가 되었습니다 [ 로그아웃 ]");
+					FileUtil.filesave( 1 );
+					return;
+				}
+			}
+		}
+
+		
+	}
+	// 9. 회원수정
+	public void updatemember() {
+		
+		System.out.println("[[알림]] 수정하실 정보를 입력해주세요");
+		System.out.print("[[ name: ");	 	this.name = scanner.next();
+		System.out.print("[[ email ");		this.email = scanner.next();
+		
+		System.out.println("[[[완료]]] : 수정이 되었습니다");
+		FileUtil.filesave( 1 );
+	
 	}
 
 	// get , set  메소드 
